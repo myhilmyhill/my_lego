@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  lego:
+    image: xenolf/lego
+    env_file:
+      - .env
+    command: >
+      --path /lego
+      --dns ${DNS}
+      --email ${EMAIL}
+      --domains ${DOMAINS_1}
+      --domains ${DOMAINS_2}
+      --accept-tos
+      run
+    volumes:
+      - type: bind
+        source: /etc/lego/certificates/
+        target: /lego
